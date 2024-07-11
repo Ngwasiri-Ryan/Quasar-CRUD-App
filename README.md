@@ -32,7 +32,7 @@ The Product Management Application is a web-based platform for managing a collec
 - Image upload functionality to replace the existing image if a new one is provided.
 - Success dialog to confirm the successful update of a product.
 
-  ![Product List View](./assets/update%20product%20view.PNG)
+  ![Product List View](./assets/update-product-view.PNG)
 
 ### Delete Product
 - Option to delete a product from the list.

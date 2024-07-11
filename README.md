@@ -13,20 +13,26 @@ The Product Management Application is a web-based platform for managing a collec
 - Displays a grid of product cards, each showing an image, name, price, and description.
 - Options to edit or delete each product.
 
-  ![Product List View](assets/product-list-view.png)
+  ![Product List View](./assets/product-view-page.png)
 
 ### Create Product
 - Form to add new products with fields for name, price, description, and image upload.
 - Utilizes `q-uploader` for image upload, converting the image to a data URL for easy handling.
 
-  ![Product List View](assets/create-product-view.png)
+  ![Create Product View](./assets/add-product-view-page.png)
+
+
+
+  ### Added Product Dispalyed
+
+![Product Added View](./assets/added-product-view-page%20(1).png)
 
 ### Update Product
 - Form to update existing product details, including name, price, description, and image.
 - Image upload functionality to replace the existing image if a new one is provided.
 - Success dialog to confirm the successful update of a product.
 
-  ![Product List View](assets/update-product-view.png)
+  ![Product List View](./assets/update%20product%20view.PNG)
 
 ### Delete Product
 - Option to delete a product from the list.

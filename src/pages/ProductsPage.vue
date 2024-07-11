@@ -3,11 +3,13 @@
     <div class="row q-col-gutter-md">
       <div class="col-4" v-for="(product, index) in products" :key="index">
         <q-card class="my-card">
-          <q-img :src="product.image" class="image"/>
-
+          <div class="box">
+            <q-img :src="product.image" class="image"/> 
+          </div>
           <q-card-section>
             <div class="text-h6">{{ product.name }}</div>
-            <div class="text-subtitle2">XAF{{ product.price }}</div>
+            <div class="text-subtitle2">XAF{{ formatPrice(product.price) }}</div>
+            <div class="text-subtitle2">{{ formatDate(product.date) }}</div>
           </q-card-section>
 
           <q-card-section>
@@ -104,13 +106,13 @@ export default {
           const reader = new FileReader();
           reader.onload = (e) => {
             this.updatedProduct.image = e.target.result;
-            this.products[index] = { ...this.updatedProduct }; // update the product object
+            this.products[index] = { ...this.updatedProduct, date: Date.now() }; // update the product object with new date
             this.showUpdateFormDialog = false;
             this.showSuccessDialog = true; // show success dialog
           };
           reader.readAsDataURL(this.newImage);
         } else {
-          this.products[index] = { ...this.updatedProduct }; // update the product object
+          this.products[index] = { ...this.updatedProduct, date: Date.now() }; // update the product object with new date
           this.showUpdateFormDialog = false;
           this.showSuccessDialog = true; // show success dialog
         }
@@ -126,6 +128,18 @@ export default {
 
     onImageAdded(files) {
       this.newImage = files[0]; // store the new image file
+    },
+
+    formatDate(timestamp) {
+      const date = new Date(timestamp);
+      return date.toLocaleDateString(); // Format the date to a readable format
+    },
+
+    formatPrice(price) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'decimal',
+        minimumFractionDigits: 0
+      }).format(price);
     }
   }
 };

@@ -28,7 +28,7 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat round color="primary" label="OK" @click="showSuccessDialog = false" />
+          <q-btn flat round color="primary" label="OK" @click="navigateToProductPage" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -45,7 +45,8 @@ export default {
         name: '',
         price: '',
         description: '',
-        image: null
+        image: null,
+        date: null
       },
       showSuccessDialog: false
     };
@@ -61,12 +62,14 @@ export default {
       const reader = new FileReader();
       reader.onload = () => {
         const imageData = reader.result;
+        const currentDate = Date.now();
         const newProductData = {
-          id: Date.now(), // Generate a unique ID for the new product
+          id: currentDate, // Generate a unique ID for the new product using Date.now()
           name: this.newProduct.name,
           price: this.newProduct.price,
           description: this.newProduct.description,
-          image: imageData
+          image: imageData,
+          date: currentDate // Set the date as the current timestamp
         };
 
         products.push(newProductData); // Add the new product to the existing products array
@@ -76,7 +79,8 @@ export default {
           name: '',
           price: '',
           description: '',
-          image: null
+          image: null,
+          date: null
         };
 
         // Show success dialog
@@ -89,6 +93,11 @@ export default {
       if (files.length > 0) {
         this.newProduct.image = files[0];
       }
+    },
+
+    navigateToProductPage() {
+      this.showSuccessDialog = false;
+      this.$router.push('/product-page'); // Navigate to the ProductPage
     }
   }
 };
